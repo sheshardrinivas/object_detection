@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="x-icon" href="https://www.folio3.ai/blog/wp-content/uploads/2022/11/Untitled-design-4.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBJECT DETECTOR</title>
+</head>
+<body background="https://repository-images.githubusercontent.com/367071568/a0833ac3-dfd7-4386-951f-b59e0caa8c96">
+<img src="https://www.folio3.ai/blog/wp-content/uploads/2022/11/Untitled-design-4.jpg" height="80px" width="80px">
+<center>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+   <input id="textinput" type="text" width="300px" style="background-color: black; color: white;" placeholder="🔍OBJECT NAME">
+
+
+
+</center>
+<script>
+if_serach_=["airport","apple","preson"]
+img="";
+url=["detection.html"];
+window.addEventListener("keydown",my_keydown)
+function my_keydown(e){
+keyPressed=e.keyCode;
+ console.log(keyPressed);
+  if (keyPressed==13) {
+    serach=document.getElementById('textinput').value;
+    lowcaseserach=serach.toLowerCase()
+ //serach
+    if (lowcaseserach==if_serach_[0]) {
+        localStorage.setItem("what image to show",img=1);
+        window.location=url[0];
+        
+    }
+    if (lowcaseserach==if_serach_[1]) {
+        localStorage.setItem("what image to show",img=2);
+        window.location=url[0];
+        
+    }
+    if (lowcaseserach==if_serach_[2]) {
+        localStorage.setItem("what image to show",img=3);
+        window.location=url[0];
+        
+    }
+ }
+
+}
+</script>
+    
+</body>
+</html>

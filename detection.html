@@ -1,0 +1,106 @@
+
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <link rel="shortcut icon" type="x-icon" href="https://www.folio3.ai/blog/wp-content/uploads/2022/11/Untitled-design-4.jpg">
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBJECT DETECTION</title>
+</head>
+<body  style="   background-position: center;background-size: cover;" background="https://repository-images.githubusercontent.com/367071568/a0833ac3-dfd7-4386-951f-b59e0caa8c96">
+    <h1 style=" text-align: center;  background-color:lightskyblue;font-size: large;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: white;">OBJECT DETECTION</h1>
+   
+    <img src="https://www.folio3.ai/blog/wp-content/uploads/2022/11/Untitled-design-4.jpg" height="80px" width="80px">
+    <center >
+     <label id="status" style="background-color: lightseagreen; color: aliceblue;"></label>
+     <br>
+     <label style="color: beige;" id="]"></label>
+     <br><br>
+     <img id="i" src="" width="400" height="400">
+     <br> <br>
+     <label style="color: beige;" id="="></label>
+    
+</center>
+</body>
+</html>
+<style>
+    canvas
+{
+  box-shadow: 10px 10px 10px lightseagreen;
+  border-radius: 10px;
+
+
+
+}
+</style>
+<script>
+
+
+what=0;
+img='';
+status=""
+
+function setup(){
+    
+  
+    object_detector=ml5.objectDetector('cocossd',modeLoaded);
+    document.getElementById("status").innerHTML="STATUS -> DETECTING OBJECTS";
+}
+function preload(){
+
+  img=localStorage.getItem('what image to show')
+  if(img==1){
+    img1=loadImage('rrrr.avif');
+    document.getElementById("i").src="rrrr.avif";
+  }
+  if(img==2){
+    img1=loadImage('a.jpg');
+    document.getElementById("i").src='a.jpg';
+  }if(img==3){
+    img1=loadImage('r.png');
+    document.getElementById("i").src='r.png';
+  }
+}
+function modeLoaded(){
+    console.log("modelLoaded !");
+    status=true;
+    object_detector.detect(img1,gotResult);
+}
+function gotResult(error,results){
+   if (error) {
+     console.log(error);
+   } 
+   else{
+    window.addEventListener("keydown",my_keydown)
+   function my_keydown(e){
+     keyPressed=e.keyCode;
+     if (keyPressed==39) {
+       what=what+1;
+       document.getElementById("=").innerHTML=results[what].label;
+       document.getElementById("]").innerHTML=Math.floor( results[what].confidence*100)+"%";
+       }
+     if (keyPressed==37) {
+       what=what-1;
+       document.getElementById("=").innerHTML= results[what].label;
+       document.getElementById("]").innerHTML=Math.floor( results[what].confidence*100)+"%";
+      }
+     if(what>2){
+       what=0;
+       }
+       if(what<0){
+       what=2;
+       }
+    }
+   console.log(results);
+   document.getElementById("=").innerHTML=results[what].label;
+   document.getElementById("]").innerHTML=Math.floor( results[what].confidence*100)+"%";
+
+   }
+}
+
+
+</script>
+
